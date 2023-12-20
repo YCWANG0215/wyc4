@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Words API Integration</title>
+    <script>
+        function getPopularWords() {
+            const city = document.getElementById('city').value;
+            const limit = document.getElementById('limit').value;
+            // Make a GET request to /popular_words API
+            // Use Fetch or XMLHttpRequest to handle the API request and response
+            
+            // Example using Fetch API
+            fetch(`/popular_words?city=${city}&limit=${limit}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayPopularWords(data);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function substituteWords() {
+            const word = document.getElementById('word').value;
+            const substitute = document.getElementById('substitute').value;
+            // Make a POST request to /substitute_words API
+            // Use Fetch or XMLHttpRequest to handle the API request and response
+            
+            // Example using Fetch API
+            fetch('/substitute_words', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ word: word, substitute: substitute })
+            })
+            .then(response => response.json())
+            .then(data => {
+                displaySubstituteResponse(data);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        function displayPopularWords(words) {
+            // Display the popular words on the webpage
+            const popularWordsDiv = document.getElementById('popularWords');
+            // Manipulate this div to display the words as needed
+        }
+
+        function displaySubstituteResponse(response) {
+            // Display the substitute response on the webpage
+            const substituteResponseDiv = document.getElementById('substituteResponse');
+            // Manipulate this div to display the response as needed
+        }
+    </script>
+</head>
+<body>
+    <h1>Yinchu Wang</h1>
+    <h2>76024</h2>
+    <!-- Place for your picture -->
+
+    <h3>Get Popular Words</h3>
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city"><br><br>
+    <label for="limit">Limit:</label>
+    <input type="text" id="limit" name="limit"><br><br>
+    <button onclick="getPopularWords()">Get Popular Words</button>
+
+    <div id="popularWords">
+        <!-- Display area for popular words -->
+        <img src="static/p1.png" alt="Your Image" width="200" height="200">
+    </div>
+
+    <h3>Substitute Words</h3>
+    <label for="word">Word:</label>
+    <input type="text" id="word" name="word"><br><br>
+    <label for="substitute">Substitute:</label>
+    <input type="text" id="substitute" name="substitute"><br><br>
+    <button onclick="substituteWords()">Substitute Words</button>
+
+    <div id="substituteResponse">
+        <!-- Display area for substitute response -->
+    </div>
+</body>
+</html>

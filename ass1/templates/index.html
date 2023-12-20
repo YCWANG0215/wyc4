@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Popular Words</title>
+</head>
+<body>
+    <h1>Popular Words</h1>
+    <input type="text" id="cityInput" placeholder="Enter City Name">
+    <input type="number" id="limitInput" placeholder="Enter Limit">
+    <button onclick="getPopularWords()">Get Popular Words</button>
+    <div id="result"></div>
+
+    <script>
+        function getPopularWords() {
+            var city = document.getElementById('cityInput').value;
+            var limit = document.getElementById('limitInput').value;
+
+            fetch('/popular_words?city=' + city + '&limit=' + limit)
+            .then(response => response.json())
+            .then(data => {
+                var resultDiv = document.getElementById('result');
+                resultDiv.innerHTML = '';
+
+                data.forEach(word => {
+                    var wordElement = document.createElement('p');
+                    wordElement.textContent = 'Word: ' + word.term + ', Popularity: ' + word.popularity;
+                    resultDiv.appendChild(wordElement);
+                });
+            });
+        }
+    </script>
+</body>
+</html>

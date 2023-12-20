@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reviews for {{ city_name }}</title>
+</head>
+<body>
+    <h1>Reviews for {{ city_name }}</h1>
+    <ul>
+        {% for item in reviews %}
+            <li>{{ item.review|truncate(100) }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

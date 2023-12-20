@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Substitution</title>
+    <script>
+        function substituteWords() {
+            // 构造要发送的 JSON 数据
+            const data = {
+                word: "great",
+                substitute: "fantastic"
+            };
+
+            // 使用 fetch 发送 POST 请求
+            fetch('/substitute_words', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 处理返回的 JSON 数据
+                console.log(data.affected_reviews);  // 这里示例将受影响评论数量打印到控制台
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</head>
+<body>
+    <button onclick="substituteWords()">Substitute Words</button>
+</body>
+</html>
